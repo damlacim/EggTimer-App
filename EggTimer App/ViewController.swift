@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -13,7 +14,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
+    var player: AVAudioPlayer!
+    
+    let eggTimes = ["Soft": 3, "Medium": 420, "Hard": 720]
     var timer = Timer()
     var totalTime = 0
     var secondPassed = 0
@@ -24,7 +27,7 @@ class ViewController: UIViewController {
         totalTime = eggTimes[hardness]!
         progressBar.progress = 0.0
         secondPassed = 0
-        titleLabel.text = hardness
+        
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
@@ -37,7 +40,6 @@ class ViewController: UIViewController {
             
         } else {
             timer.invalidate()
-            titleLabel.text = "Done!"
         }
     }
     
